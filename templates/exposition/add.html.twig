@@ -1,0 +1,47 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ajouter une exposition{% endblock %}
+
+{% block body %}
+    <div class="w-1/2 mx-auto p-4 ">
+        <div class="text-center  rounded-md">
+            <h1 class="text-5xl font-bold text-gray-300 text-shadow text-shadow-blue-900">Ajouter une exposition</h1>
+            <a class="text-2xl text-white" href="{{ path('app_exposition') }}">Accueil</a>
+        </div>
+    </div>
+
+    <div class="flex justify-center m-2 items-center">
+        <div class="border border-solid border-gray-400 w-1/2 mx-auto p-4 rounded-lg">
+            {{ form_start(form_add_expo, {'attr': {'class': 'flex flex-col'}}) }}
+
+            <div class="mb-4 pt-2 mx-auto">
+                {{ form_label(form_add_expo.name, "Nom de l'exposition", {'label_attr': {'class': 'block text-2xl text-white font-bold mb-2 ml-4 '}}) }}
+                {{ form_widget(form_add_expo.name, {'attr': {'class': ' px-3 py-2 border border-black rounded-md ml-4'}})}}
+            </div>
+            <div class="mb-4 pt-2 flex items-center">
+                {{ form_label(form_add_expo.startDate, "Date de début", {'label_attr': {'class': 'block text-2xl text-white font-bold mb-2 ml-4'}}) }}
+                {{ form_widget(form_add_expo.startDate, {'attr': {'class': 'w-3/5 px-4 py-2 my-2 mx-4 rounded-md ml-4'}})}}
+                {{ form_label(form_add_expo.endDate, "Date de fin", {'label_attr': {'class': 'block text-2xl text-white font-bold mb-2 ml-4'}}) }}
+                {{ form_widget(form_add_expo.endDate, {'attr': {'class': 'w-3/5 px-4 py-2 my-2 mx-4 rounded-md ml-4'}})}}
+            </div>
+            <div class="mb-4 pt-2 mx-auto">
+                {{ form_label(form_add_expo.description, "Description", {'label_attr': {'class': 'block text-2xl text-white font-bold mb-2 ml-4'}}) }}
+                {{ form_widget(form_add_expo.description, {'attr': {'class': ' px-3 py-2 border border-black rounded-md ml-4'}})}}
+            </div>
+            <div class="mb-4 pt-2 flex items-center">
+                {{ form_label(form_add_expo.admissionPrice, "Prix d'entrée", {'label_attr': {'class': 'block text-2xl text-white font-bold mb-2 ml-4'}}) }}
+                {{ form_widget(form_add_expo.admissionPrice, {'attr': {'class': 'w-1/4 px-3 py-2 border border-black rounded-md ml-4'}})}}
+                {{ form_label(form_add_expo.location, "Emplacement", {'label_attr': {'class': 'block text-2xl text-white font-bold mb-2 ml-4'}}) }}
+                {{ form_widget(form_add_expo.location, {'attr': {'class': 'w-1/4 px-3 py-2 border border-black rounded-md ml-4'}}) }}
+            </div>
+            <div class="mb-4 pt-2 mx-auto">
+                {{ form_label(form_add_expo.image, "Image", {'label_attr': {'class': 'block text-2xl text-white font-bold mb-2 ml-4'}}) }}
+                {{ form_widget(form_add_expo.image, {'attr': {'class': ' px-3 py-2 border border-black rounded-md ml-4'}}) }}
+            </div>
+
+            <button class=" w-1/2 m-4 mx-auto text-white font-semibold bg-gray-800 py-2 px-4 rounded-md shadow-md hover:bg-emerald-800" type="submit">Ajouter l'exposition</button>
+
+            {{ form_end(form_add_expo) }}
+        </div>
+    </div>
+{% endblock %}
