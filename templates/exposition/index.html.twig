@@ -4,6 +4,13 @@
 
 {% block body %}
     <div class="w-1/2 mx-auto p-4">
+        <form action="{{ path('app_exposition') }}" method="get" class="mb-3">
+            <div class="text-center">
+                <input class="rounded-lg m-2" type="text" name="search"  placeholder="Rechercher par nom">
+                <button class="text-white bg-gray-800" type="submit">Rechercher</button>
+            </div>
+        </form>
+
         <div class="text-center rounded-md">
             <h1 class="text-5xl font-bold text-gray-300 text-shadow text-shadow-blue-900">Expositions Artistiques</h1>
             <a class="text-2xl text-white" href="{{ path('add_exposition') }}">Ajouter une exposition</a>
@@ -17,21 +24,28 @@
                     <div class="w-full md:w-1/2 lg:w-1/3 px-2 mb-4">
                         <div class="h-100 p-4 ">
                             <p class="text-white text-center text-xl mb-2">Nom: {{ expo.name }}</p>
-                            <p class="text-white text-center text-xl mb-2">Date de début: {{ expo.startDate.format('Y-m-d') }}</p>
-                            <p class="text-white text-center text-xl mb-2">Date de fin: {{ expo.endDate.format('Y-m-d') }}</p>
-                            <p class="text-white text-center text-xl mb-2 w-full">Description: {{ expo.description }}</p>
-                            <p class="text-blue-900 text-center text-xl mb-2">Prix d'entrée: {{ expo.admissionPrice }} €</p>
+                            <p class="text-white text-center text-xl mb-2">Date de
+                                début: {{ expo.startDate.format('Y-m-d') }}</p>
+                            <p class="text-white text-center text-xl mb-2">Date de
+                                fin: {{ expo.endDate.format('Y-m-d') }}</p>
+                            <p class="text-white text-center text-xl mb-2 w-full">
+                                Description: {{ expo.description }}</p>
+                            <p class="text-blue-900 text-center text-xl mb-2">Prix d'entrée: {{ expo.admissionPrice }}
+                                €</p>
                             <p class="text-white text-center text-xl mb-2">Emplacement: {{ expo.location }}</p>
+                            <p class="text-white text-center text-xl mb-2">
+                                Statut: {% if expo.status %} Ouvert {% else %} Fermé {% endif %}</p>
                             <img class="mx-auto h-48 p-6" src="{{ expo.image }}" alt="{{ expo.name }}">
-                            <a href="{{ path('edit_exposition', {id: expo.id}) }}" class="block w-full bg-emerald-800 text-white font-semibold px-4 py-2 rounded-md my-2 hover:bg-emerald-700 text-center">
+                            <a href="{{ path('edit_exposition', {id: expo.id}) }}"
+                               class="block w-full bg-emerald-800 text-white font-semibold px-4 py-2 rounded-md my-2 hover-bg-emerald-700 text-center">
                                 Modifier
                             </a>
-                            <a href="{{ path('delete_exposition', {id: expo.id}) }}" class="block w-full bg-amber-950 text-white font-semibold px-4 py-2 rounded-md my-2 hover:bg-amber-800 text-center">
+                            <a href="{{ path('delete_exposition', {id: expo.id}) }}"
+                               class="block w-full bg-amber-950 text-white font-semibold px-4 py-2 rounded-md my-2 hover-bg-amber-800 text-center">
                                 Supprimer
                             </a>
                         </div>
                     </div>
-
                 {% endfor %}
             </div>
         </div>

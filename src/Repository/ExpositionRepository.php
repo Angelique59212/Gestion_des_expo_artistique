@@ -21,6 +21,16 @@ class ExpositionRepository extends ServiceEntityRepository
         parent::__construct($registry, Exposition::class);
     }
 
+    public function findBySearchQuery($search)
+    {
+        $query = $this->createQueryBuilder('e');
+        if (!empty($search)) {
+            $query->andWhere('e.name LIKE :search')
+                ->setParameter('search', '%' . $search . '%');
+        }
+        return $query->getQuery()->getResult();
+    }
+
 //    /**
 //     * @return Exposition[] Returns an array of Exposition objects
 //     */

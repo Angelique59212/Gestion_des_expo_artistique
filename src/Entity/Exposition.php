@@ -35,6 +35,9 @@ class Exposition
     #[ORM\Column(length: 255)]
     private ?string $image = null;
 
+    #[ORM\Column]
+    private ?bool $status = true;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -120,6 +123,18 @@ class Exposition
     public function setImage(string $image): static
     {
         $this->image = $image;
+
+        return $this;
+    }
+
+    public function isStatus(): ?bool
+    {
+        return $this->status;
+    }
+
+    public function setStatus(bool $status): static
+    {
+        $this->status = $status;
 
         return $this;
     }

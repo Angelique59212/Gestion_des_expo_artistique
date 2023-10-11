@@ -14,11 +14,17 @@ use Symfony\Component\Routing\Annotation\Route;
 class ExpositionController extends AbstractController
 {
     #[Route('/', name: 'app_exposition')]
-    public function index(ExpositionRepository $expositionRepository): Response
+    public function index(Request $request, ExpositionRepository $expositionRepository): Response
     {
+        $search = $request->query->get('search');
         $getAll = $expositionRepository->findAll();
+        $expos = null;
+
+        if ($search) {
+            $expos = $expositionRepository->findBySearchQuery($search);
+        }
         return $this->render('exposition/index.html.twig', [
-            'expositions'=> $getAll,
+            'expositions'=> ($expos !== null) ? $expos : $getAll,
         ]);
     }
 
@@ -47,6 +53,9 @@ class ExpositionController extends AbstractController
         $form->handleRequest($request);
 
         if ($form->isSubmitted() && $form->isValid()) {
+            $status = $form->get('status')->getData();
+            $expo->setStatus($status);
+
             $em->persist($expo);
             $em->flush();
             return $this->redirectToRoute('app_exposition');
